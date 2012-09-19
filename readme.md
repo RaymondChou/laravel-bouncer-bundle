@@ -2,6 +2,10 @@ This again has been a very handy bundle for me,
 
 The way it works is by giving priority to uris(or routes).
 
+NOTE: IT ASSUMES THAT WHATEVER USER YOU INVESTIGATE HAS AN ARRAY OF $roles SET ON IT WHERE EACH 
+		$role IS AN OBJECT WITH PROPERTY $name SET ON IT. IN SHORT you need a User model with roles()
+		relationship set on it
+
 In config/rules.php, you define an array of uri-heads with the roles required for them
 example: 
 
