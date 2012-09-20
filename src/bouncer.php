@@ -10,7 +10,7 @@ class Bouncer
 
 	public function is_api_call($uri)
 	{
-		$parts = expode('/', $uri);
+		$parts = explode('/', $uri);
 
 		foreach(Rules::api_calls() as $c) {
 			if(in_array($c, $parts))

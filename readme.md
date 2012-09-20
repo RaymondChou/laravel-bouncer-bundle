@@ -9,19 +9,19 @@ NOTE: IT ASSUMES THAT WHATEVER USER YOU INVESTIGATE HAS AN ARRAY OF $roles SET O
 In config/rules.php, you define an array of uri-heads with the roles required for them
 example: 
 
-return array(
-	'admin/acl/users/new' => array('superadmin'),
-	'admin/acl/users/create' => array('superadmin'),
-	'admin/acl/users/destroy' => array('superadmin'),
-	'admin'       => array('admin', 'superadmin')
-);
+	return array(
+		'admin/acl/users/new' => array('superadmin'),
+		'admin/acl/users/create' => array('superadmin'),
+		'admin/acl/users/destroy' => array('superadmin'),
+		'admin'       => array('admin', 'superadmin')
+	);
 
 the Bouncer finds the best matched uri-head for the current uri and checks if current user is allowed to
 access that uri or not.
 
 If a user doesn't have appropriate roles, it either shows a 403 forbidden page or (the view for the page
 is in bouncer/views/blocked.blade.php), or it throws a json-response with data ['error' => 'forbidden']
-and header 403.
+and header 403 based on whether the current uri is an api call or not (which works )
 
 You can easily attach it to the before filter of the routes and be done with it like this:
 
