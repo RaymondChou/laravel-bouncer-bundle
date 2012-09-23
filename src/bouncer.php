@@ -2,7 +2,7 @@
 
 namespace Bouncer;
 
-use Response, View, UtilTrait;
+use Response, View;
 
 class Bouncer
 {

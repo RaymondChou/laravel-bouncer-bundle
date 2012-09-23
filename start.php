@@ -1,7 +1,7 @@
 <?php
 
-Autoloader::namespaces([
+Autoloader::namespaces(array(
 	'Bouncer' => Bundle::path('bouncer') . 'src'
-]);
+));
 
 Autoloader::alias('Bouncer\\Bouncer', 'Bouncer');
