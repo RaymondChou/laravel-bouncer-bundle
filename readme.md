@@ -2,9 +2,13 @@ This again has been a very handy bundle for me,
 
 The way it works is by giving priority to uris(or routes).
 
-NOTE: IT ASSUMES THAT WHATEVER USER YOU INVESTIGATE HAS AN ARRAY OF $roles SET ON IT WHERE EACH 
-		$role IS AN OBJECT WITH PROPERTY $name SET ON IT. IN SHORT you need a User model with roles()
-		relationship set on it
+NOTE: The logic for extracting roles out of user comes from a closure regitered in IoC in start.php. The default logic is:
+
+	IoC::register('bouncer: roles_extractor', function () {
+		return function ($user) {
+			return array_map(function ($r) { return $r->name; }, $user->roles);
+		};
+	});
 
 In config/rules.php, you define an array of uri-heads with the roles required for them
 example: 
