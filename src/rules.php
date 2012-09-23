@@ -42,4 +42,9 @@ class Rules
 
 		return $paths;
 	}
+
+	public static function api_calls()
+	{
+		return Config::get('bouncer::api-calls');
+	}
 }

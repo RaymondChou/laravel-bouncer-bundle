@@ -2,14 +2,26 @@
 
 namespace Bouncer;
 
+use IoC;
+
 class Eyes
 {
 	protected $_user = null;
 	protected $_roles = array();
 
+	protected static $_roles_extractor = null;
+
 	public static function on($user)
 	{
 		return new static($user);
+	}
+
+	public static function roles_extractor()
+	{
+		if(static::$_roles_extractor)
+			return static::$_roles_extractor;
+
+		return static::$_roles_extractor = IoC::resolve('bouncer: roles_extractor');
 	}
 
 	public function __construct($user)
@@ -27,7 +39,9 @@ class Eyes
 		if($this->_roles)
 			return $this->_roles;
 
-		return $this->_roles = array_map(function ($r) { return $r->name; }, $this->_user->roles);
+		$roles_extractor = static::roles_extractor();
+
+		return $this->_roles = $roles_extractor($this->user());
 	}
 
 	public function is_allowed_on($uri)
