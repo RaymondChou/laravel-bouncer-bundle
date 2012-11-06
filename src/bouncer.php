@@ -57,7 +57,7 @@ class Bouncer
 			return true;
 
 		if($this->is_api_call($uri))
-			return Response::json(array('error' => 'forbidden', 403));
+			return Response::json(array('error' => 'forbidden'), 403);
 		else
 			return Response::make(View::make('bouncer::blocked'));
 	}
